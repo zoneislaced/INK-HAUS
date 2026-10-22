@@ -18,10 +18,10 @@ const stats = [
 ];
 
 const studioImages = [
-    { src: "https://picsum.photos/500/600?random=2", alt: "Artist tattooing a client in the studio", offset: false },
-    { src: "https://picsum.photos/500/600?random=3", alt: "Freshly completed tattoo artwork", offset: true },
-    { src: "https://picsum.photos/500/600?random=4", alt: "Modern studio interior with equipment", offset: false },
-    { src: "https://picsum.photos/500/600?random=5", alt: "Artist sketching a custom design", offset: true }
+    { src: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0010.jpg", alt: "Artist tattooing a client in the studio", offset: false },
+    { src: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0011.jpg", alt: "Freshly completed tattoo artwork", offset: true },
+    { src: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0012.jpg", alt: "Modern studio interior with equipment", offset: false },
+    { src: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0013.jpg", alt: "Artist sketching a custom design", offset: true }
 ];
 
 const galleryFilters = [
@@ -33,18 +33,18 @@ const galleryFilters = [
 ];
 
 const galleryItems = [
-    { id: 1, src: "https://picsum.photos/600/750?random=101", alt: "Blackwork geometric forearm tattoo", title: "Sacred Geometry Sleeve", category: "blackwork", artist: "Baraka" },
-    { id: 2, src: "https://picsum.photos/600/750?random=102", alt: "Photorealistic lion portrait tattoo", title: "Regal Lion Portrait", category: "realism", artist: "Amina" },
-    { id: 3, src: "https://picsum.photos/600/750?random=103", alt: "Traditional anchor tattoo with banner", title: "Classic Anchor", category: "traditional", artist: "Kiptoo" },
-    { id: 4, src: "https://picsum.photos/600/750?random=104", alt: "Geometric wolf head tattoo", title: "Wolf Geometry", category: "geometric", artist: "Wanjiku" },
-    { id: 5, src: "https://picsum.photos/600/750?random=105", alt: "Blackwork floral shoulder piece", title: "Dark Bloom", category: "blackwork", artist: "Baraka" },
-    { id: 6, src: "https://picsum.photos/600/750?random=106", alt: "Realistic eye tattoo on inner arm", title: "Third Eye", category: "realism", artist: "Amina" },
-    { id: 7, src: "https://picsum.photos/600/750?random=107", alt: "Traditional rose and dagger tattoo", title: "Rose & Dagger", category: "traditional", artist: "Kiptoo" },
-    { id: 8, src: "https://picsum.photos/600/750?random=108", alt: "Geometric linework back tattoo", title: "Spine Lines", category: "geometric", artist: "Wanjiku" },
-    { id: 9, src: "https://picsum.photos/600/750?random=109", alt: "Blackwork snake wrapping forearm", title: "Serpent Coil", category: "blackwork", artist: "Baraka" },
-    { id: 10, src: "https://picsum.photos/600/750?random=110", alt: "Realistic portrait of a woman tattoo", title: "Grace", category: "realism", artist: "Amina" },
-    { id: 11, src: "https://picsum.photos/600/750?random=111", alt: "Japanese koi fish tattoo", title: "Koi Ascending", category: "traditional", artist: "Kiptoo" },
-    { id: 12, src: "https://picsum.photos/600/750?random=112", alt: "Geometric mandala tattoo on thigh", title: "Mandala Prime", category: "geometric", artist: "Wanjiku" }
+    { id: 1, src: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0014.jpg", alt: "Blackwork geometric forearm tattoo", title: "Sacred Geometry Sleeve", category: "blackwork", artist: "Baraka" },
+    { id: 2, src: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0015.jpg", alt: "Photorealistic lion portrait tattoo", title: "Regal Lion Portrait", category: "realism", artist: "Amina" },
+    { id: 3, src: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0016.jpg", alt: "Traditional anchor tattoo with banner", title: "Classic Anchor", category: "traditional", artist: "Kiptoo" },
+    { id: 4, src: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0017.jpg", alt: "Geometric wolf head tattoo", title: "Wolf Geometry", category: "geometric", artist: "Wanjiku" },
+    { id: 5, src: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0018.jpg", alt: "Blackwork floral shoulder piece", title: "Dark Bloom", category: "blackwork", artist: "Baraka" },
+    { id: 6, src: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0019.jpg", alt: "Realistic eye tattoo on inner arm", title: "Third Eye", category: "realism", artist: "Amina" },
+    { id: 7, src: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0020.jpg", alt: "Traditional rose and dagger tattoo", title: "Rose & Dagger", category: "traditional", artist: "Kiptoo" },
+    { id: 8, src: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0014.jpg", alt: "Geometric linework back tattoo", title: "Spine Lines", category: "geometric", artist: "Wanjiku" },
+    { id: 9, src: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0015.jpg", alt: "Blackwork snake wrapping forearm", title: "Serpent Coil", category: "blackwork", artist: "Baraka" },
+    { id: 10, src: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0016.jpg", alt: "Realistic portrait of a woman tattoo", title: "Grace", category: "realism", artist: "Amina" },
+    { id: 11, src: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0017.jpg", alt: "Japanese koi fish tattoo", title: "Koi Ascending", category: "traditional", artist: "Kiptoo" },
+    { id: 12, src: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0018.jpg", alt: "Geometric mandala tattoo on thigh", title: "Mandala Prime", category: "geometric", artist: "Wanjiku" }
 ];
 
 const services = [
@@ -59,10 +59,10 @@ const services = [
 ];
 
 const artists = [
-    { id: "baraka", name: 'Baraka "Iron" Juma', role: "Founder · Blackwork", img: "https://picsum.photos/400/500?random=201", bio: "15+ years in the chair. Baraka leads the studio with a passion for bold blackwork and geometric precision." },
-    { id: "amina", name: "Amina Mwangi", role: "Realism & Portraits", img: "https://picsum.photos/400/500?random=202", bio: "Award-winning portrait artist whose pieces have been featured in regional ink magazines across East Africa." },
-    { id: "kiptoo", name: "Kiptoo Koech", role: "Traditional & Neo-Traditional", img: "https://picsum.photos/400/500?random=203", bio: "Master of bold lines and striking color contrast, bringing fierce heritage and custom motifs to life." },
-    { id: "wanjiku", name: "Wanjiku Njoroge", role: "Fine Line & Geometric", img: "https://picsum.photos/400/500?random=204", bio: "Known for ultra-fine linework and sacred geometry, Wanjiku's minimal aesthetic is in high demand." }
+    { id: "baraka", name: 'Baraka "Iron" Juma', role: "Founder · Blackwork", img: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0010.jpg", bio: "15+ years in the chair. Baraka leads the studio with a passion for bold blackwork and geometric precision." },
+    { id: "amina", name: "Amina Mwangi", role: "Realism & Portraits", img: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0011.jpg", bio: "Award-winning portrait artist whose pieces have been featured in regional ink magazines across East Africa." },
+    { id: "kiptoo", name: "Kiptoo Koech", role: "Traditional & Neo-Traditional", img: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0012.jpg", bio: "Master of bold lines and striking color contrast, bringing fierce heritage and custom motifs to life." },
+    { id: "wanjiku", name: "Wanjiku Njoroge", role: "Fine Line & Geometric", img: "https://raw.githubusercontent.com/zoneislaced/INK-HAUS/refs/heads/main/New%20folder/IMG-20261022-WA0013.jpg", bio: "Known for ultra-fine linework and sacred geometry, Wanjiku's minimal aesthetic is in high demand." }
 ];
 
 const testimonials = [
