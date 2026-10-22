@@ -4,8 +4,11 @@
     <base target="_self">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INKHAUS — Modern Tattoo Studio</title>
+    <title>INKHAUS — Modern Tattoo Studio | Nairobi CBD</title>
     <meta name="description" content="INKHAUS — premier Nairobi CBD tattoo studio. Custom blackwork, realism, geometric, and traditional tattoos by award-winning artists. Book your session today.">
+    
+    <!-- Inline SVG Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0a0c'/><path d='M50 15 L85 85 L65 85 L50 50 L35 85 L15 85 Z' fill='%23ff4d00'/><path d='M42 20 L58 20 L50 40 Z' fill='%23ffffff'/></svg>">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -39,9 +42,19 @@
 
     <header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
         <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4" aria-label="Primary navigation">
-            <a href="#home" class="font-display text-3xl tracking-widest text-white hover:text-accent transition-colors">
-                INK<span class="text-accent">HAUS</span>
+            <!-- SVG LOGO -->
+            <a href="#home" class="flex items-center gap-3 group" aria-label="INKHAUS Home">
+                <svg class="w-9 h-9 text-accent group-hover:scale-105 transition-transform duration-300" viewBox="0 0 100 100" fill="currentColor">
+                    <!-- Tattoo Needle / Diamond Emblem -->
+                    <polygon points="50,5 90,35 50,95 10,35" fill="none" stroke="currentColor" stroke-width="6"/>
+                    <polygon points="50,18 75,37 50,80 25,37" fill="currentColor"/>
+                    <circle cx="50" cy="38" r="7" fill="#0a0a0c"/>
+                </svg>
+                <span class="font-display text-3xl tracking-widest text-white group-hover:text-accent transition-colors">
+                    INK<span class="text-accent">HAUS</span>
+                </span>
             </a>
+
             <ul id="nav-list" class="hidden md:flex items-center gap-8"></ul>
             <div class="flex items-center gap-5">
                 <a href="#contact" class="hidden sm:inline-block bg-accent px-6 py-3 font-bold uppercase tracking-widest text-xs text-black hover:bg-white transition-colors duration-300">
@@ -125,7 +138,12 @@
                         <p class="font-mono text-accent text-xs uppercase tracking-[0.35em] mb-4">Portfolio</p>
                         <h2 class="font-display text-6xl sm:text-7xl text-white leading-[0.95]">SELECTED WORKS</h2>
                     </div>
-                    <p class="max-w-sm text-zinc-400 leading-relaxed">A glimpse of recent work from our artists. Every piece is designed bespoke — no flash, no shortcuts.</p>
+                    <div class="flex flex-col items-start md:items-end gap-3">
+                        <p class="max-w-sm text-zinc-400 leading-relaxed">A glimpse of recent work from our artists. Every piece is designed bespoke — no flash, no shortcuts.</p>
+                        <button id="share-portfolio-btn" class="font-mono text-xs text-accent hover:underline flex items-center gap-2">
+                            <i class="fas fa-link"></i> Copy Link to Current View
+                        </button>
+                    </div>
                 </div>
                 <div id="gallery-filters" class="reveal flex flex-wrap gap-3 mb-10" role="group" aria-label="Filter portfolio by style"></div>
                 <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
@@ -190,6 +208,10 @@
                         </div>
                     </div>
                     <div>
+                        <label for="artist-select" class="block text-sm font-medium text-zinc-300 mb-2">Preferred Artist</label>
+                        <select id="artist-select" class="w-full bg-black/50 border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors"></select>
+                    </div>
+                    <div>
                         <label for="style" class="block text-sm font-medium text-zinc-300 mb-2">Preferred Style</label>
                         <select id="style" class="w-full bg-black/50 border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors"></select>
                     </div>
@@ -213,7 +235,15 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-4 gap-12">
                 <div>
-                    <p class="font-display text-3xl tracking-widest text-white">INK<span class="text-accent">HAUS</span></p>
+                    <!-- FOOTER LOGO -->
+                    <a href="#home" class="flex items-center gap-3 group">
+                        <svg class="w-8 h-8 text-accent" viewBox="0 0 100 100" fill="currentColor">
+                            <polygon points="50,5 90,35 50,95 10,35" fill="none" stroke="currentColor" stroke-width="6"/>
+                            <polygon points="50,18 75,37 50,80 25,37" fill="currentColor"/>
+                            <circle cx="50" cy="38" r="7" fill="#0a0a0c"/>
+                        </svg>
+                        <span class="font-display text-3xl tracking-widest text-white">INK<span class="text-accent">HAUS</span></span>
+                    </a>
                     <p class="mt-4 text-zinc-500 text-sm leading-relaxed">Premium tattooing in Nairobi CBD since 2009. Art you can wear.</p>
                     <div id="social-icons" class="mt-6 flex gap-3"></div>
                 </div>

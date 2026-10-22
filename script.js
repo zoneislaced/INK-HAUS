@@ -48,21 +48,21 @@ const galleryItems = [
 ];
 
 const services = [
-    { icon: "fa-pen-nib", name: "Custom Design", price: "FROM Ksh 18,000", desc: "Fully bespoke pieces drawn from scratch — your idea, our artistry." },
-    { icon: "fa-slash", name: "Fine Line", price: "FROM Ksh 15,000", desc: "Delicate, precise linework for minimalist and intricate designs." },
-    { icon: "fa-fill-drip", name: "Blackwork", price: "FROM Ksh 18,000", desc: "Bold, saturated blacks for graphic, tribal, and abstract statements." },
-    { icon: "fa-camera-retro", name: "Realism", price: "FROM Ksh 25,000", desc: "Photorealistic portraits, wildlife, and scenes with sculpted depth." },
-    { icon: "fa-water", name: "Japanese", price: "FROM Ksh 22,000", desc: "Traditional motifs — koi, dragons, waves — composed authentically." },
-    { icon: "fa-drafting-compass", name: "Geometric", price: "FROM Ksh 20,000", desc: "Sacred geometry and precise patterns, mathematically balanced." },
-    { icon: "fa-shield-alt", name: "Cover-Ups", price: "FROM Ksh 25,000", desc: "Transform old or unwanted ink into a fresh, confident piece." },
-    { icon: "fa-comments", name: "Consultation", price: "FREE", desc: "Meet your artist to discuss ideas, sizing, placement, and aftercare." }
+    { icon: "fa-pen-nib", name: "Custom Design", styleKey: "Custom", price: "FROM Ksh 18,000", desc: "Fully bespoke pieces drawn from scratch — your idea, our artistry." },
+    { icon: "fa-slash", name: "Fine Line", styleKey: "Fine Line", price: "FROM Ksh 15,000", desc: "Delicate, precise linework for minimalist and intricate designs." },
+    { icon: "fa-fill-drip", name: "Blackwork", styleKey: "Blackwork", price: "FROM Ksh 18,000", desc: "Bold, saturated blacks for graphic, tribal, and abstract statements." },
+    { icon: "fa-camera-retro", name: "Realism", styleKey: "Realism", price: "FROM Ksh 25,000", desc: "Photorealistic portraits, wildlife, and scenes with sculpted depth." },
+    { icon: "fa-water", name: "Japanese", styleKey: "Traditional", price: "FROM Ksh 22,000", desc: "Traditional motifs — koi, dragons, waves — composed authentically." },
+    { icon: "fa-drafting-compass", name: "Geometric", styleKey: "Geometric", price: "FROM Ksh 20,000", desc: "Sacred geometry and precise patterns, mathematically balanced." },
+    { icon: "fa-shield-alt", name: "Cover-Ups", styleKey: "Cover-Up", price: "FROM Ksh 25,000", desc: "Transform old or unwanted ink into a fresh, confident piece." },
+    { icon: "fa-comments", name: "Consultation", styleKey: "Not Sure Yet", price: "FREE", desc: "Meet your artist to discuss ideas, sizing, placement, and aftercare." }
 ];
 
 const artists = [
-    { name: 'Baraka "Iron" Juma', role: "Founder · Blackwork", img: "https://picsum.photos/400/500?random=201", bio: "15+ years in the chair. Baraka leads the studio with a passion for bold blackwork and geometric precision." },
-    { name: "Amina Mwangi", role: "Realism & Portraits", img: "https://picsum.photos/400/500?random=202", bio: "Award-winning portrait artist whose pieces have been featured in regional ink magazines across East Africa." },
-    { name: "Kiptoo Koech", role: "Traditional & Neo-Traditional", img: "https://picsum.photos/400/500?random=203", bio: "Master of bold lines and striking color contrast, bringing fierce heritage and custom motifs to life." },
-    { name: "Wanjiku Njoroge", role: "Fine Line & Geometric", img: "https://picsum.photos/400/500?random=204", bio: "Known for ultra-fine linework and sacred geometry, Wanjiku's minimal aesthetic is in high demand." }
+    { id: "baraka", name: 'Baraka "Iron" Juma', role: "Founder · Blackwork", img: "https://picsum.photos/400/500?random=201", bio: "15+ years in the chair. Baraka leads the studio with a passion for bold blackwork and geometric precision." },
+    { id: "amina", name: "Amina Mwangi", role: "Realism & Portraits", img: "https://picsum.photos/400/500?random=202", bio: "Award-winning portrait artist whose pieces have been featured in regional ink magazines across East Africa." },
+    { id: "kiptoo", name: "Kiptoo Koech", role: "Traditional & Neo-Traditional", img: "https://picsum.photos/400/500?random=203", bio: "Master of bold lines and striking color contrast, bringing fierce heritage and custom motifs to life." },
+    { id: "wanjiku", name: "Wanjiku Njoroge", role: "Fine Line & Geometric", img: "https://picsum.photos/400/500?random=204", bio: "Known for ultra-fine linework and sacred geometry, Wanjiku's minimal aesthetic is in high demand." }
 ];
 
 const testimonials = [
@@ -107,6 +107,59 @@ const contactInfo = [
 ];
 
 const styleOptions = ["Blackwork", "Realism", "Traditional", "Geometric", "Fine Line", "Cover-Up", "Not Sure Yet"];
+
+// ================= STATE MANAGEMENT =================
+let state = {
+    category: "all",
+    artist: "any",
+    style: styleOptions[0]
+};
+
+function readStateFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const categoryParam = params.get("category");
+    const artistParam = params.get("artist");
+    const styleParam = params.get("style");
+
+    if (categoryParam && galleryFilters.some(f => f.key === categoryParam.toLowerCase())) {
+        state.category = categoryParam.toLowerCase();
+    }
+    if (artistParam && (artistParam === "any" || artists.some(a => a.id === artistParam.toLowerCase()))) {
+        state.artist = artistParam.toLowerCase();
+    }
+    if (styleParam && styleOptions.some(s => s.toLowerCase() === styleParam.toLowerCase())) {
+        const matchedStyle = styleOptions.find(s => s.toLowerCase() === styleParam.toLowerCase());
+        if (matchedStyle) state.style = matchedStyle;
+    }
+}
+
+function updateURLState(replace = false) {
+    const url = new URL(window.location.href);
+    
+    if (state.category && state.category !== "all") {
+        url.searchParams.set("category", state.category);
+    } else {
+        url.searchParams.delete("category");
+    }
+
+    if (state.artist && state.artist !== "any") {
+        url.searchParams.set("artist", state.artist);
+    } else {
+        url.searchParams.delete("artist");
+    }
+
+    if (state.style && state.style !== styleOptions[0]) {
+        url.searchParams.set("style", state.style);
+    } else {
+        url.searchParams.delete("style");
+    }
+
+    if (replace) {
+        window.history.replaceState(state, "", url.toString());
+    } else {
+        window.history.pushState(state, "", url.toString());
+    }
+}
 
 // ================= RENDER FUNCTIONS =================
 function renderNav(items, className) {
@@ -166,28 +219,40 @@ function renderGallery(items, filter) {
 
 function renderServices(items) {
     return items.map(item => `
-        <article class="group bg-[#141418] border border-white/10 p-7 hover:border-accent/60 hover:-translate-y-1.5 transition-all duration-300">
-            <div class="w-12 h-12 bg-accent/10 border border-accent/30 flex items-center justify-center text-accent text-lg group-hover:bg-accent group-hover:text-black transition-colors duration-300">
-                <i class="fas ${item.icon}"></i>
+        <article class="group bg-[#141418] border border-white/10 p-7 hover:border-accent/60 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+            <div>
+                <div class="w-12 h-12 bg-accent/10 border border-accent/30 flex items-center justify-center text-accent text-lg group-hover:bg-accent group-hover:text-black transition-colors duration-300">
+                    <i class="fas ${item.icon}"></i>
+                </div>
+                <h3 class="font-display text-2xl text-white tracking-wide mt-5">${item.name}</h3>
+                <p class="font-mono text-accent text-[11px] tracking-[0.2em] mt-1.5">${item.price}</p>
+                <p class="text-zinc-400 text-sm leading-relaxed mt-3">${item.desc}</p>
             </div>
-            <h3 class="font-display text-2xl text-white tracking-wide mt-5">${item.name}</h3>
-            <p class="font-mono text-accent text-[11px] tracking-[0.2em] mt-1.5">${item.price}</p>
-            <p class="text-zinc-400 text-sm leading-relaxed mt-3">${item.desc}</p>
+            <a href="#contact" data-select-style="${item.styleKey}" class="mt-6 text-xs font-mono uppercase tracking-widest text-zinc-300 hover:text-accent flex items-center gap-2">
+                Book This Style →
+            </a>
         </article>
     `).join("");
 }
 
 function renderArtists(items) {
     return items.map(item => `
-        <article class="group bg-[#141418] border border-white/10 hover:border-accent/50 transition-colors duration-300">
-            <div class="overflow-hidden">
-                <img src="${item.img}" alt="${item.name}" loading="lazy"
-                     class="w-full h-[380px] object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+        <article class="group bg-[#141418] border border-white/10 hover:border-accent/50 transition-colors duration-300 flex flex-col justify-between">
+            <div>
+                <div class="overflow-hidden">
+                    <img src="${item.img}" alt="${item.name}" loading="lazy"
+                         class="w-full h-[380px] object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display text-2xl text-white tracking-wide">${item.name}</h3>
+                    <p class="font-mono text-accent text-[11px] uppercase tracking-[0.2em] mt-1">${item.role}</p>
+                    <p class="text-zinc-400 text-sm leading-relaxed mt-3">${item.bio}</p>
+                </div>
             </div>
-            <div class="p-6">
-                <h3 class="font-display text-2xl text-white tracking-wide">${item.name}</h3>
-                <p class="font-mono text-accent text-[11px] uppercase tracking-[0.2em] mt-1">${item.role}</p>
-                <p class="text-zinc-400 text-sm leading-relaxed mt-3">${item.bio}</p>
+            <div class="px-6 pb-6">
+                <a href="#contact" data-select-artist="${item.id}" class="inline-block w-full text-center bg-white/5 border border-white/10 py-2.5 font-mono text-xs uppercase tracking-widest text-zinc-300 hover:bg-accent hover:text-black hover:border-accent transition-colors duration-300">
+                    Book Session
+                </a>
             </div>
         </article>
     `).join("");
@@ -245,22 +310,70 @@ function renderContactInfo(items) {
     `).join("");
 }
 
+function syncUIWithState() {
+    // Gallery state
+    document.getElementById("gallery-grid").innerHTML = renderGallery(galleryItems, state.category);
+    document.getElementById("gallery-filters").innerHTML = renderFilters(galleryFilters, state.category);
+
+    // Form inputs state
+    const styleSelect = document.getElementById("style");
+    if (styleSelect) styleSelect.value = state.style;
+
+    const artistSelect = document.getElementById("artist-select");
+    if (artistSelect) artistSelect.value = state.artist;
+}
+
 // ================= MOUNT =================
 document.addEventListener("DOMContentLoaded", function () {
+    readStateFromURL();
+
     document.getElementById("nav-list").innerHTML = renderNav(navItems, "text-sm uppercase tracking-widest text-zinc-300 hover:text-accent transition-colors");
     document.getElementById("mobile-nav-list").innerHTML = renderNav(navItems, "block py-3 text-lg uppercase tracking-widest text-white hover:text-accent transition-colors border-b border-white/5");
     document.getElementById("marquee-track").innerHTML = renderMarquee(marqueeWords);
     document.getElementById("stats-grid").innerHTML = renderStats(stats);
     document.getElementById("studio-images").innerHTML = renderStudioImages(studioImages);
-    document.getElementById("gallery-filters").innerHTML = renderFilters(galleryFilters, "all");
-    document.getElementById("gallery-grid").innerHTML = renderGallery(galleryItems, "all");
     document.getElementById("services-grid").innerHTML = renderServices(services);
     document.getElementById("artists-grid").innerHTML = renderArtists(artists);
     document.getElementById("testimonials-grid").innerHTML = renderTestimonials(testimonials);
     document.getElementById("footer-cols").innerHTML = renderFooterCols(footerCols);
     document.getElementById("social-icons").innerHTML = renderSocials(socials);
     document.getElementById("contact-info").innerHTML = renderContactInfo(contactInfo);
+    
+    // Select dropdown options
     document.getElementById("style").innerHTML = styleOptions.map(o => `<option value="${o}">${o}</option>`).join("");
+    
+    const artistOptions = [{ id: "any", name: "Any Available Artist" }, ...artists];
+    document.getElementById("artist-select").innerHTML = artistOptions.map(a => `<option value="${a.id}">${a.name}</option>`).join("");
+
+    // Initial render from state
+    syncUIWithState();
+
+    // LISTEN FOR BROWSER BACK/FORWARD
+    window.addEventListener("popstate", function () {
+        readStateFromURL();
+        syncUIWithState();
+    });
+
+    // LISTEN TO FORM CHANGES & PERSIST TO URL
+    document.getElementById("style").addEventListener("change", function (e) {
+        state.style = e.target.value;
+        updateURLState();
+    });
+
+    document.getElementById("artist-select").addEventListener("change", function (e) {
+        state.artist = e.target.value;
+        updateURLState();
+    });
+
+    // SHARE PORTFOLIO LINK BUTTON
+    document.getElementById("share-portfolio-btn").addEventListener("click", function () {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            showToast("Copied view link to clipboard!");
+        }).catch(() => {
+            showToast("Failed to copy link.");
+        });
+    });
 
     // ================= BEHAVIOR =================
     const menuToggle = document.getElementById("menu-toggle");
@@ -305,10 +418,30 @@ document.addEventListener("DOMContentLoaded", function () {
         const filterBtn = e.target.closest("[data-filter]");
         if (filterBtn) {
             e.preventDefault();
-            const category = filterBtn.dataset.filter;
-            document.getElementById("gallery-grid").innerHTML = renderGallery(galleryItems, category);
-            document.getElementById("gallery-filters").innerHTML = renderFilters(galleryFilters, category);
+            state.category = filterBtn.dataset.filter;
+            updateURLState();
+            syncUIWithState();
             return;
+        }
+
+        const selectStyleLink = e.target.closest("[data-select-style]");
+        if (selectStyleLink) {
+            const style = selectStyleLink.dataset.selectStyle;
+            if (style) {
+                state.style = style;
+                updateURLState();
+                syncUIWithState();
+            }
+        }
+
+        const selectArtistLink = e.target.closest("[data-select-artist]");
+        if (selectArtistLink) {
+            const artistId = selectArtistLink.dataset.selectArtist;
+            if (artistId) {
+                state.artist = artistId;
+                updateURLState();
+                syncUIWithState();
+            }
         }
 
         const link = e.target.closest("a[href^='#']");
@@ -349,6 +482,13 @@ document.addEventListener("DOMContentLoaded", function () {
         success.classList.remove("hidden");
         success.setAttribute("role", "status");
         this.reset();
+        
+        // Reset selections in state
+        state.style = styleOptions[0];
+        state.artist = "any";
+        updateURLState();
+        syncUIWithState();
+
         clearTimeout(this._timer);
         this._timer = setTimeout(function () {
             success.classList.add("hidden");
