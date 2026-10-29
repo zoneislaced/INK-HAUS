@@ -179,7 +179,7 @@ function renderStats(items) {
     return items.map(item => `
         <div>
             <p class="font-display text-5xl text-accent leading-none">${item.value}</p>
-            <p class="mt-2 text-[11px] font-mono uppercase tracking-[0.2em] text-zinc-500">${item.label}</p>
+            <p class="mt-2 text-[11px] font-mono uppercase tracking-[0.2em] text-slate-400">${item.label}</p>
         </div>
     `).join("");
 }
@@ -187,7 +187,7 @@ function renderStats(items) {
 function renderStudioImages(items) {
     return items.map(img => `
         <img src="${img.src}" alt="${img.alt}" loading="lazy"
-             class="w-full h-60 sm:h-72 object-cover border border-white/10 ${img.offset ? "mt-8" : ""}">
+             class="w-full h-60 sm:h-72 object-cover border border-slate-700/60 ${img.offset ? "mt-8" : ""}">
     `).join("");
 }
 
@@ -195,8 +195,8 @@ function renderFilters(items, active) {
     return items.map(item => `
         <button type="button" data-filter="${item.key}" aria-pressed="${item.key === active}"
             class="px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.2em] border transition-colors duration-300 ${item.key === active
-                ? "bg-accent border-accent text-black"
-                : "border-white/15 text-zinc-400 hover:border-accent hover:text-accent"}">
+                ? "bg-accent border-accent text-black font-bold"
+                : "border-slate-700 text-slate-300 hover:border-accent hover:text-accent"}">
             ${item.label}
         </button>
     `).join("");
@@ -205,13 +205,13 @@ function renderFilters(items, active) {
 function renderGallery(items, filter) {
     const filtered = filter === "all" ? items : items.filter(item => item.category === filter);
     return filtered.map(item => `
-        <article class="group relative overflow-hidden border border-white/10 bg-[#141418]">
+        <article class="group relative overflow-hidden border border-slate-700/60 bg-[#112240]">
             <img src="${item.src}" alt="${item.alt}" loading="lazy"
                  class="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-110">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#060D1A]/95 via-[#060D1A]/40 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
                 <p class="font-mono text-accent text-[11px] uppercase tracking-[0.25em]">${item.category}</p>
                 <h3 class="font-display text-3xl text-white tracking-wide mt-1">${item.title}</h3>
-                <p class="text-zinc-400 text-sm mt-1">by ${item.artist}</p>
+                <p class="text-slate-300 text-sm mt-1">by ${item.artist}</p>
             </div>
         </article>
     `).join("");
@@ -219,16 +219,16 @@ function renderGallery(items, filter) {
 
 function renderServices(items) {
     return items.map(item => `
-        <article class="group bg-[#141418] border border-white/10 p-7 hover:border-accent/60 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+        <article class="group bg-[#112240] border border-slate-700/60 p-7 hover:border-accent/80 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
             <div>
                 <div class="w-12 h-12 bg-accent/10 border border-accent/30 flex items-center justify-center text-accent text-lg group-hover:bg-accent group-hover:text-black transition-colors duration-300">
                     <i class="fas ${item.icon}"></i>
                 </div>
                 <h3 class="font-display text-2xl text-white tracking-wide mt-5">${item.name}</h3>
                 <p class="font-mono text-accent text-[11px] tracking-[0.2em] mt-1.5">${item.price}</p>
-                <p class="text-zinc-400 text-sm leading-relaxed mt-3">${item.desc}</p>
+                <p class="text-slate-300 text-sm leading-relaxed mt-3">${item.desc}</p>
             </div>
-            <a href="#contact" data-select-style="${item.styleKey}" class="mt-6 text-xs font-mono uppercase tracking-widest text-zinc-300 hover:text-accent flex items-center gap-2">
+            <a href="#contact" data-select-style="${item.styleKey}" class="mt-6 text-xs font-mono uppercase tracking-widest text-slate-300 hover:text-accent flex items-center gap-2">
                 Book This Style →
             </a>
         </article>
@@ -237,7 +237,7 @@ function renderServices(items) {
 
 function renderArtists(items) {
     return items.map(item => `
-        <article class="group bg-[#141418] border border-white/10 hover:border-accent/50 transition-colors duration-300 flex flex-col justify-between">
+        <article class="group bg-[#112240] border border-slate-700/60 hover:border-accent/80 transition-colors duration-300 flex flex-col justify-between">
             <div>
                 <div class="overflow-hidden">
                     <img src="${item.img}" alt="${item.name}" loading="lazy"
@@ -246,11 +246,11 @@ function renderArtists(items) {
                 <div class="p-6">
                     <h3 class="font-display text-2xl text-white tracking-wide">${item.name}</h3>
                     <p class="font-mono text-accent text-[11px] uppercase tracking-[0.2em] mt-1">${item.role}</p>
-                    <p class="text-zinc-400 text-sm leading-relaxed mt-3">${item.bio}</p>
+                    <p class="text-slate-300 text-sm leading-relaxed mt-3">${item.bio}</p>
                 </div>
             </div>
             <div class="px-6 pb-6">
-                <a href="#contact" data-select-artist="${item.id}" class="inline-block w-full text-center bg-white/5 border border-white/10 py-2.5 font-mono text-xs uppercase tracking-widest text-zinc-300 hover:bg-accent hover:text-black hover:border-accent transition-colors duration-300">
+                <a href="#contact" data-select-artist="${item.id}" class="inline-block w-full text-center bg-navy-dark/60 border border-slate-700/60 py-2.5 font-mono text-xs uppercase tracking-widest text-slate-300 hover:bg-accent hover:text-black hover:border-accent transition-colors duration-300">
                     Book Session
                 </a>
             </div>
@@ -260,13 +260,13 @@ function renderArtists(items) {
 
 function renderTestimonials(items) {
     return items.map(item => `
-        <article class="bg-[#141418] border border-white/10 p-8 hover:border-accent/40 transition-colors duration-300 flex flex-col">
+        <article class="bg-[#112240] border border-slate-700/60 p-8 hover:border-accent/60 transition-colors duration-300 flex flex-col">
             <div class="text-accent text-2xl mb-4"><i class="fas fa-quote-left"></i></div>
-            <p class="text-zinc-300 leading-relaxed flex-1">&ldquo;${item.quote}&rdquo;</p>
-            <div class="mt-6 pt-6 border-t border-white/10 flex items-center justify-between">
+            <p class="text-slate-200 leading-relaxed flex-1">&ldquo;${item.quote}&rdquo;</p>
+            <div class="mt-6 pt-6 border-t border-slate-700/60 flex items-center justify-between">
                 <div>
                     <p class="font-semibold text-white">${item.name}</p>
-                    <p class="text-sm text-zinc-500 mt-0.5">${item.piece}</p>
+                    <p class="text-sm text-slate-400 mt-0.5">${item.piece}</p>
                 </div>
                 <div class="text-accent text-sm tracking-widest" aria-label="${item.rating} out of 5 stars">${"★".repeat(item.rating)}</div>
             </div>
@@ -280,7 +280,7 @@ function renderFooterCols(cols) {
             <p class="font-semibold text-white uppercase tracking-wider text-sm mb-4">${col.title}</p>
             <ul class="space-y-2.5 text-sm">
                 ${col.items.map(item => `
-                    <li><a href="${item.href}" class="text-zinc-500 hover:text-accent transition-colors">${item.label}</a></li>
+                    <li><a href="${item.href}" class="text-slate-400 hover:text-accent transition-colors">${item.label}</a></li>
                 `).join("")}
             </ul>
         </div>
@@ -290,7 +290,7 @@ function renderFooterCols(cols) {
 function renderSocials(items) {
     return items.map(item => `
         <a href="#" data-social="${item.name}" data-handle="${item.handle}" aria-label="${item.name}"
-           class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-black hover:bg-accent hover:border-accent transition-colors duration-300">
+           class="w-10 h-10 bg-navy border border-slate-700 flex items-center justify-center text-slate-300 hover:text-black hover:bg-accent hover:border-accent transition-colors duration-300">
             <i class="fab ${item.icon}"></i>
         </a>
     `).join("");
@@ -304,7 +304,7 @@ function renderContactInfo(items) {
             </div>
             <div>
                 <p class="font-semibold text-white">${item.title}</p>
-                ${item.lines.map(line => `<p class="text-zinc-400 text-sm">${line}</p>`).join("")}
+                ${item.lines.map(line => `<p class="text-slate-300 text-sm">${line}</p>`).join("")}
             </div>
         </div>
     `).join("");
@@ -327,8 +327,8 @@ function syncUIWithState() {
 document.addEventListener("DOMContentLoaded", function () {
     readStateFromURL();
 
-    document.getElementById("nav-list").innerHTML = renderNav(navItems, "text-sm uppercase tracking-widest text-zinc-300 hover:text-accent transition-colors");
-    document.getElementById("mobile-nav-list").innerHTML = renderNav(navItems, "block py-3 text-lg uppercase tracking-widest text-white hover:text-accent transition-colors border-b border-white/5");
+    document.getElementById("nav-list").innerHTML = renderNav(navItems, "text-sm uppercase tracking-widest text-slate-300 hover:text-accent transition-colors");
+    document.getElementById("mobile-nav-list").innerHTML = renderNav(navItems, "block py-3 text-lg uppercase tracking-widest text-white hover:text-accent transition-colors border-b border-slate-800");
     document.getElementById("marquee-track").innerHTML = renderMarquee(marqueeWords);
     document.getElementById("stats-grid").innerHTML = renderStats(stats);
     document.getElementById("studio-images").innerHTML = renderStudioImages(studioImages);
@@ -390,9 +390,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const header = document.getElementById("site-header");
     window.addEventListener("scroll", function () {
         if (window.scrollY > 40) {
-            header.classList.add("bg-black/90", "backdrop-blur-xl", "border-b", "border-white/10");
+            header.classList.add("bg-navy-dark/90", "backdrop-blur-xl", "border-b", "border-slate-800");
         } else {
-            header.classList.remove("bg-black/90", "backdrop-blur-xl", "border-b", "border-white/10");
+            header.classList.remove("bg-navy-dark/90", "backdrop-blur-xl", "border-b", "border-slate-800");
         }
     }, { passive: true });
 
